@@ -52,9 +52,7 @@ RUN git clone https://github.com/rusty-dev/mopidy-deezer.git \
  && cd ..
 
 # Default configuration
-COPY mopidy.conf /var/lib/mopidy/.config/mopidy/mopidy.conf
-
-RUN chown mopidy:audio -R /var/lib/mopidy/.config
+COPY mopidy.conf /root/.config/mopidy/mopidy.conf
 
 # icecast config
 COPY icecast.xml /usr/share/icecast2/icecast.xml
@@ -63,9 +61,6 @@ COPY silence.mp3 /usr/share/icecast2/silence.mp3
 
 RUN chown -R icecast2:icecast /usr/share/icecast2
 
-# Run as mopidy user
-USER mopidy
-
 VOLUME /var/lib/mopidy/local
 VOLUME /var/lib/mopidy/media
 
@@ -73,4 +68,4 @@ EXPOSE 6600
 EXPOSE 6680
 EXPOSE 8888
 
-CMD /usr/bin/mopidy
+CMD service icecast2 start && /usr/bin/mopidy
