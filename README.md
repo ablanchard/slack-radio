@@ -26,11 +26,13 @@ To operate normally you need to declare some variables.
 
 #### For spotify connectivity
 
-To use spotify, you need a premium account. You can also use other sources of content. You can check out [this repo which explain other configurations](https://github.com/wernight/docker-mopidy)
+To use spotify, you need a premium account. You first need [to authenticate spotify with mopidy](https://mopidy.com/ext/spotify/)
  - `SPOTIFY_USERNAME`
  - `SPOTIFY_PASSWORD`
  - `SPOTIFY_CLIENT_ID`
  - `SPOTIFY_CLIENT_SECRET`
+
+To use other sources of content. You can check out [this repo which explain other configurations](https://github.com/wernight/docker-mopidy)
 
 #### To connect to Slack
 

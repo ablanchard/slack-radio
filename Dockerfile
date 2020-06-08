@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:buster-slim
 
 # Official Mopidy install for Debian/Ubuntu along with some extensions
 # (see https://docs.mopidy.com/en/latest/installation/debian/ )
@@ -22,10 +22,10 @@ RUN set -ex \
        mopidy \
        icecast2 \
        sed \
-       mopidy-spotify \
        python3-pip \
        sox \
        espeak \
+       mopidy-spotify \
  && pip3 install -U six \
  && pip3 install Mopidy-MusicBox-Webclient Mopidy-Slack Mopidy-Jingle \
  && apt-get purge --auto-remove -y \
