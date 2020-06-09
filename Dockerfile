@@ -2,13 +2,6 @@ FROM debian:jessie
 
 MAINTAINER Werner Beroux <werner@beroux.com>
 
-# Default configuration
-COPY mopidy.conf /var/lib/mopidy/.config/mopidy/mopidy.conf
-COPY silence.mp3 /home/mopidy/silence.mp3
-
-# Start helper script
-COPY entrypoint.sh /entrypoint.sh
-
 # Official Mopidy install for Debian/Ubuntu along with some extensions
 # (see https://docs.mopidy.com/en/latest/installation/debian/ )
 RUN set -ex \
@@ -35,13 +28,13 @@ RUN set -ex \
  && pip install \
         Mopidy-Moped \
         Mopidy-YouTube \
+        mopidy-musicbox-webclient \
+        sleekxmpp \
  && apt-get purge --auto-remove -y \
         curl \
         gcc \
  && apt-get clean \
- && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ~/.cache \
- && chown mopidy:audio -R /var/lib/mopidy/.config \
- && chown mopidy:audio /entrypoint.sh
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ~/.cache
 
 RUN git clone https://github.com/ablanchard/mopidy-hipchat.git \
  && cd mopidy-hipchat \
@@ -58,8 +51,17 @@ RUN git clone https://github.com/rusty-dev/mopidy-deezer.git \
  && pip install . --upgrade \
  && cd ..
 
-COPY icecast.xml /etc/icecast2/icecast.xml
+# Default configuration
+COPY mopidy.conf /var/lib/mopidy/.config/mopidy/mopidy.conf
 
+RUN chown mopidy:audio -R /var/lib/mopidy/.config
+
+# icecast config
+COPY icecast.xml /usr/share/icecast2/icecast.xml
+COPY icecast2 /etc/default/icecast2
+COPY silence.mp3 /usr/share/icecast2/silence.mp3
+
+RUN chown -R icecast2:icecast /usr/share/icecast2
 
 # Run as mopidy user
 USER mopidy
@@ -69,6 +71,6 @@ VOLUME /var/lib/mopidy/media
 
 EXPOSE 6600
 EXPOSE 6680
+EXPOSE 8888
 
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["/usr/bin/mopidy"]
+CMD /usr/bin/mopidy

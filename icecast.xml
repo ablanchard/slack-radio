@@ -64,7 +64,7 @@
 
     <mount>
         <mount-name>/slack-radio.mp3</mount-name>
-        <fallback-mount>/silence.mp3</fallback-mount>
+        <fallback-mount>/usr/share/icecast2/silence.mp3</fallback-mount>
         <fallback-override>1</fallback-override>
         <fallback-when-full>1</fallback-when-full>
     </mount>
