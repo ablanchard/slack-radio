@@ -56,6 +56,7 @@ COPY mopidy.conf /root/.config/mopidy/mopidy.conf
 
 # icecast config
 COPY icecast.xml /usr/share/icecast2/icecast.xml
+COPY icecast.xml /etc/icecast2/icecast.xml
 COPY icecast2 /etc/default/icecast2
 COPY silence.mp3 /usr/share/icecast2/silence.mp3
 
@@ -68,4 +69,4 @@ EXPOSE 6600
 EXPOSE 6680
 EXPOSE 8888
 
-CMD service icecast2 start && /usr/bin/mopidy
+CMD service icecast2 start && /usr/bin/mopidy -vvvv
