@@ -58,7 +58,7 @@ COPY mopidy.conf /root/.config/mopidy/mopidy.conf
 COPY icecast.xml /usr/share/icecast2/icecast.xml
 COPY icecast.xml /etc/icecast2/icecast.xml
 COPY icecast2 /etc/default/icecast2
-COPY silence.mp3 /usr/share/icecast2/silence.mp3
+COPY silence.mp3 /usr/share/icecast2/web/silence.mp3
 
 RUN chown -R icecast2:icecast /usr/share/icecast2
 
