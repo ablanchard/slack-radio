@@ -1,9 +1,0 @@
-version: '3.3'
-
-services:
-  mopidy-prod:
-    image: mopidy:latest
-    restart: unless-stopped
-    ports:
-      - "6680:6680"
-      - "8888:8888"
