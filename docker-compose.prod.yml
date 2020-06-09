@@ -1,0 +1,23 @@
+version: '3.3'
+
+services:
+  mopidy-prod:
+    image: mopidy:latest
+    restart: unless-stopped
+    ports:
+      - "6680:6680"
+      - "8888:8888"
+    networks:
+      - web
+    labels:
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+      - "traefik.web.frontend.rule=Host:radio.example.com"
+      - "traefik.admin.frontend.rule=Host:mopidy.example.com"
+      - "traefik.backend=mopidy-prod"
+      - "traefik.web.port=8888"
+      - "traefik.admin.port=6680"
+
+networks:
+  web:
+    external: true
