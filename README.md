@@ -49,7 +49,8 @@ You need first to configure a slack app by following [the readme of the plugin](
 
 ### Listen to music and request songs
 
-The music playing on mopidy is stream to the port 8888. With the mount point you provided. Ex: (https://localhost:8888/slack-radio.mp3)
+The music playing on mopidy is stream to the port 8888. With the mount point you provided. Ex: https://localhost:8888/slack-radio.mp3
+
 The chatbot is listening to all topics he is added to. He will responds to the following commands:
  - `request song_name [- artist_name]` Request a new song to be played
  - `start [playlist_name]` Start the radio broadcast. The bot will look for playlist starting with given name of fallback to the default playlist
@@ -59,16 +60,17 @@ The chatbot is listening to all topics he is added to. He will responds to the f
 
 ### Jingles
 
-Every X (default: 1) songs a jingles is played between tracks. Jingles are generated when building the image using [espeak](http://espeak.sourceforge.net) You can customize the messages by modifying `jingles-en.txt` and rebuilding the image using `make build` and then use your images with `make run-dev`
+Every X (default: 1) songs a jingles is played between tracks. Jingles are generated when building the image using [espeak](http://espeak.sourceforge.net). You can customize the messages by modifying `jingles-en.txt` and rebuilding the image using `make build` and then use your images with `make run-dev`
 
 ## Rebuilding the image
 
 `make build` rebuilds the image.
+
 `make run-dev` runs the locally built image.
 
 ## Deploy to a server
 
-`docker-compose.prod.yml` is a sample docker-compose file to deploy this app on a server with traefik 1.5 routing rules.
+`docker-compose.prod.yml` is a sample docker-compose file to deploy this app on a server with traefik v1.5 routing rules.
 
 ## Credits
 
