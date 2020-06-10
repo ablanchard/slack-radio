@@ -11,6 +11,8 @@ This repo contains a docker image of mopidy customized with plugins to make it h
  - Jingle plugin, play a little jingle between tracks
  - Musibox Frontend (to administrate your server)
 
+![](docs/start.gif)
+
 ## Installation
 
 All commands are packaged in the `Makefile` to start you need to configure the env variables and then run start the server with `make run`
@@ -57,6 +59,8 @@ The chatbot is listening to all topics he is added to. He will responds to the f
  - `keep` Ask to keep the current playing song
  - `next` Ask to skip the current playing song
  - `help` Display the help
+
+![](docs/request.gif)
 
 ### Jingles
 
